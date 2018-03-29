@@ -1,9 +1,0 @@
-{
-  "watch": [
-      "app",
-      "./server.js"
-  ],
-  "ignore": [
-      "content"
-  ]
-}
