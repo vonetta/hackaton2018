@@ -51,6 +51,7 @@ jspm_packages
 
 # Misc
 typings/
+*.swp
 
 # build folders
 **/build/**
