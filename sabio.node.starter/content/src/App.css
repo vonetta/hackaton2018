@@ -26,3 +26,58 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.parallax { 
+  /* The image used */
+  background-image: url("./images/googlehomepic.jpeg");
+
+  /* Set a specific height */
+  height: 400px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#navbar {
+  margin-bottom: 0px;
+}
+
+.caption{
+  position: absolute;
+  left: 0;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  color: #000000
+}
+
+.caption span.border{
+  background-color: #fff;
+  color: #111;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+  opacity: 0.8;
+}
+
+#noSpace {
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+#break {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 4px solid #555555;
+  margin: 1em 0;
+  padding: 0;
+
+
+}
