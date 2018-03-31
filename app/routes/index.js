@@ -1,15 +1,16 @@
 const router = require('express').Router()
-const hackersRoutes = require('./hackers.routes')
+const quizRoutes = require('./quiz.routes')
 const clientRoutes = require('./client.routes')
 const authenticate = require('../filters/authenticate')
 
+const quizApiPrefix = '/api/quizzes'
 module.exports = router
 
 // check authentication for all requests
 router.use(authenticate)
 
 // API routes (group routing modules here - no empty lines between)
-router.use('/api/hackers', hackersRoutes)
+router.use(quizApiPrefix, quizRoutes)
 // router.use('/api/entities', entitiesRoutes)
 // router.use('/api/examples', examplesRoutes)
 

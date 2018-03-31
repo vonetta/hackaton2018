@@ -3,10 +3,10 @@ const conn = mongodb.connection
 const ObjectId = mongodb.ObjectId
 
 module.exports = {
-    create: create
+    create: _create
 }
 
-create = (payload) => {
+function _create (payload) {
     return conn.db().collection('public-quizzes').insert(payload)
         .then(result => result.insertedIds[0].toString())
         .catch(onError)

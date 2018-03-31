@@ -1,9 +1,17 @@
+"use strict"
+
+const quizService = require('../services/quiz.service')
+let _apiPrefix
 
 module.exports = apiPrefix => {
-    create: create
+    _apiPrefix = apiPrefix
+
+    return {
+        create: _create
+    }
 }
 
-create = (req, res) => {
+function _create(req, res) {
     quizService.create(req.body)
         .then(id => {
             const responseModel = new responses.ItemResponse()
