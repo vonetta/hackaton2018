@@ -97,13 +97,6 @@ export default class QuizForm extends React.PureComponent {
                             </div>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <label>Subject:
-                                        <input className="form-control" type="text" placeholder="Subject" />
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-sm-12">
                                     <legend>List of Questions</legend>
                                     <button className="btn btn-info" onClick={this.handleShow} type="button">Add Question</button>
                                 </div>
