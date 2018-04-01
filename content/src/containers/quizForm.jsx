@@ -1,7 +1,6 @@
 import React from "react"
 import { Modal } from "react-bootstrap"
 import { create } from "../services/quiz.service.js"
-// TODO: service
 
 export default class QuizForm extends React.PureComponent {
     state = {
