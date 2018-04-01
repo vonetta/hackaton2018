@@ -6,9 +6,30 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Route, Switch, Link } from 'react-router-dom'
 import QuizPage from './containers/quizPage'
 import QuizForm from './containers/quizForm'
+import PublicQuizzes from './containers/public.quizzes'
 
+import fire from './fire'
 
 class App extends Component {
+
+  state = {
+    messages: []
+  }
+
+  componentWillMount(){
+    /* Create reference to messages in Firebase Database */
+    let messagesRef = fire.database().ref('messages').orderByKey().limitToLast(100)
+    messagesRef.on('child_added', snapshot => {
+      /* Update React state when message is added at Firebase Databse */
+      let message = { text: snapshot.val(), id: snapshot.key }
+      this.setState({ messages: [message].concat(this.state.messages)})
+    })
+  }
+  addMessage(e){
+    e.preventDefault()
+    fire.database().ref('messages').push(this.inputEl.value)
+    this.inputEl.value = '' // clear the input
+  }
   render() {
     return (
       <div className="App">
@@ -23,7 +44,7 @@ class App extends Component {
           <Navbar.Collapse>
             <Nav>
 
-              <LinkContainer to='/example1'>
+              <LinkContainer to='/public-quizzes'>
                 <NavItem>
                   Public Quizzes
                   </NavItem>
@@ -59,10 +80,16 @@ class App extends Component {
           </Navbar.Collapse>
         </Navbar>
 
+        
+
         <Switch>
           <Route path="/quiz" component={QuizForm} />
+<<<<<<< HEAD
           <Route path="/quiz-page" component={QuizPage} />
           <Route exact path='/' component={Homepage}></Route>
+=======
+          <Route path="/public-quizzes" component={PublicQuizzes} />
+>>>>>>> e44609d500ee993e164b0e9a400144154fe51178
         </Switch>
       </div>
     );

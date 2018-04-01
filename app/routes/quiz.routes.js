@@ -1,11 +1,13 @@
-const router = require('express').Router()
-const quizControllerFactory = require('../controllers/quiz.controller.js')
+const router = require("express").Router()
+const quizControllerFactory = require("../controllers/quiz.controller.js")
+
+const quizApiPrefix = "/api/quizzes"
 
 module.exports = apiPrefix => {
-    const quizController = quizControllerFactory(apiPrefix)
-    console.log(quizController)
+  const quizController = quizControllerFactory(apiPrefix)
 
-    router.post('/api/quizzes/', quizController.create)
+  router.post("/", quizController.create)
+  router.get("/", quizController.read)
 
-    return router
+  return router
 }
