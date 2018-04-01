@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-import React from 'react'
-import { Modal } from 'react-bootstrap'
-import { create } from '../services/quiz.service.js'
-
-=======
 import React from "react"
 import { Modal } from "react-bootstrap"
 import { create } from "../services/quiz.service.js"
 import fire from "../fire"
->>>>>>> master
 // TODO: service
 
 export default class QuizForm extends React.PureComponent {
