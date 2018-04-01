@@ -90,7 +90,7 @@ export default class PublicQuizzes extends PureComponent {
               </div>
             </div>
           </div>
-          <div className="col s3">
+          <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
                 <img src={ArtPic} className="preFade" />
