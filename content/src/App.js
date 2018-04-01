@@ -4,6 +4,7 @@ import Homepage from './containers/homepage'
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Route, Switch, Link } from 'react-router-dom'
+import QuizPage from './containers/quizPage'
 import QuizForm from './containers/quizForm'
 
 
@@ -34,6 +35,12 @@ class App extends Component {
                 </NavItem>
               </LinkContainer>
 
+              <LinkContainer to='/quiz-page'>
+                <NavItem>
+                  Take Quiz
+                </NavItem>
+              </LinkContainer>
+
               <LinkContainer to='/example3'>
                 <NavItem>
                   Grading
@@ -53,8 +60,9 @@ class App extends Component {
         </Navbar>
 
         <Switch>
-          <Route exact path='/' component={Homepage}></Route>
           <Route path="/quiz" component={QuizForm} />
+          <Route path="/quiz-page" component={QuizPage} />
+          <Route exact path='/' component={Homepage}></Route>
         </Switch>
       </div>
     );
