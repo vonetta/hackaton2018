@@ -1,6 +1,4 @@
 import React, { PureComponent } from "react"
-import { Link } from "react-router-dom"
-import { Button } from "react-bootstrap"
 import MLKPic from "../images/mlk.jpg"
 import MathPic from "../images/math.jpg"
 import SciencePic from "../images/science.jpg"
@@ -26,7 +24,7 @@ export default class PublicQuizzes extends PureComponent {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={MLKPic} className="preFade" />
+                <img src={MLKPic} className="preFade" alt="" />
                 <div className="overlay">
                   <div className="fadeText">History</div>
                 </div>
@@ -39,7 +37,7 @@ export default class PublicQuizzes extends PureComponent {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={MathPic} className="preFade" />
+                <img src={MathPic} className="preFade" alt="" />
                 <div className="overlay">
                   <div className="fadeText">Math</div>
                 </div>
@@ -52,7 +50,7 @@ export default class PublicQuizzes extends PureComponent {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={SciencePic} className="preFade" />
+                <img src={SciencePic} className="preFade" alt="" />
                 <div className="overlay">
                   <div className="fadeText">Chemistry</div>
                 </div>
@@ -65,7 +63,7 @@ export default class PublicQuizzes extends PureComponent {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={LiteraturePic} className="preFade" />
+                <img src={LiteraturePic} className="preFade" alt="" />
                 <div className="overlay">
                   <div className="fadeText">Literature</div>
                 </div>
@@ -80,7 +78,7 @@ export default class PublicQuizzes extends PureComponent {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={MusicPic} className="preFade" />
+                <img src={MusicPic} className="preFade" alt="" />
                 <div className="overlay">
                   <div className="fadeText">Music</div>
                 </div>
@@ -93,7 +91,7 @@ export default class PublicQuizzes extends PureComponent {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={ArtPic} className="preFade" />
+                <img src={ArtPic} className="preFade" alt="" />
                 <div className="overlay">
                   <div className="fadeText">Art</div>
                 </div>
@@ -106,7 +104,7 @@ export default class PublicQuizzes extends PureComponent {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={CulinaryPic} className="preFade" />
+                <img src={CulinaryPic} className="preFade" alt="" />
                 <div className="overlay">
                   <div className="fadeText">Culinary Arts</div>
                 </div>
@@ -119,7 +117,7 @@ export default class PublicQuizzes extends PureComponent {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={LogicPic} className="preFade" />
+                <img src={LogicPic} className="preFade" alt="" />
                 <div className="overlay">
                   <div className="fadeText">Philosophy</div>
                 </div>

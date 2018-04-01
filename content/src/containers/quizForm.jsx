@@ -1,5 +1,5 @@
 import React from "react"
-import { Modal } from "react-bootstrap"
+//import { Modal } from "react-bootstrap"
 import { create } from "../services/quiz.service.js"
 
 // TODO: service
@@ -30,7 +30,7 @@ export default class QuizForm extends React.PureComponent {
 
   submit = event => {
     event.preventDefault()
-    const payload = this.state.formData
+    //const payload = this.state.formData
     this.setState({ submitted: true })
 
     // TODO: send payload to database
