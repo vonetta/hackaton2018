@@ -66,50 +66,53 @@ export default class PublicQuizzes extends Component {
   }
 
   render() {
-    let player
-    if (this.state.questions) {
-      for (let i = 0; i < this.state.questions.length; i++) {
-        player = (
-          <VoicePlayer
-            play={this.state.quizStart}
-            lang="en-GB"
-            onEnd={() => this.setState({ quizStart: false, recognize: true, continue: true, stop: false })}
-            text={this.state.questions[i].question}>
-          </VoicePlayer>)
-      }
-    }
+    // let player
+    // if (this.state.questions) {
+    //   for (let i = 0; i < this.state.questions.length; i++) {
+    //     player = (
+    //       <VoicePlayer
+    //         play={this.state.quizStart}
+    //         lang="en-GB"
+    //         onEnd={() => this.setState({ quizStart: false, recognize: true, continue: true, stop: false })}
+    //         text={this.state.questions[i].question}>
+    //       </VoicePlayer>)
+    //   }
+    // }
 
     return (
       <div className="container">
         <h1
           className="App-title"
-          style={{ textAlign: "center", fontFamily: "arial" }}
-        >
+          style={{ textAlign: "center", fontFamily: "arial" }}>
           Public Quizzes
         </h1>
+        {this.state.questions && (this.state.questions.map(item => {
+          return (
+            <VoicePlayer
+              play={this.state.quizStart}
+              lang="en-GB"
+              onEnd={() => this.setState({ quizStart: false, recognize: true, continue: true, stop: false })}
+              text={item.question}>
+            </VoicePlayer>)
+        }))}
+        {this.state.recognize && (
+          <VoiceRecognition
+            onResult={this.onResult}
+            continuous={this.state.continue}
+            stop={this.state.stop}
+            onEnd={this.popArray}
+          >
+          </VoiceRecognition>
+        )}
         <div className="rowC">
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
                 <img src={MLKPic} className="preFade" alt="" />
                 <div className="overlay">
-                  <a onClick={this.getQuiz} href="">
-                    <div id="history" className="fadeText">
-                      History
-                    </div>
+                  <a onClick={this.getQuiz} href="#">
+                    <div id="history" className="fadeText">History</div>
                   </a>
-                  {player}
-                  {
-                    this.state.recognize && (
-                      <VoiceRecognition
-                        onResult={this.onResult}
-                        continuous={this.state.continue}
-                        stop={this.state.stop}
-                        onEnd={this.popArray}
-                      >
-                      </VoiceRecognition>
-                    )
-                  }
                 </div>
               </div>
               <div className="card-content camera-card">
