@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export function readQuizById(id){
-    return axios.get(`${process.env.REACT_APP_BACKEND_ORIGIN}/api/quizzes/${id}`)
+export function readQuizById(category) {
+    return axios.get(`${process.env.REACT_APP_BACKEND_ORIGIN}/api/quizzes/${category}`)
         .then(onSuccess)
         .catch(onError)
 }
@@ -18,4 +18,5 @@ function onSuccess(response) {
 
 function onError(error) {
     console.error(error)
+    return Promise.reject(error)
 }

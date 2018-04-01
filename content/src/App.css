@@ -84,6 +84,10 @@
   padding: 0;
 }
 
+div.modal-content {
+  padding: 5%;
+}
+
 .preFade {
   display: block;
   width: 200px;
