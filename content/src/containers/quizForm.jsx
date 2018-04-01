@@ -87,22 +87,43 @@ export default class QuizForm extends React.PureComponent {
     render() {
 
         return (
-            <div className="row">
-                <div className="col-sm-12">
-                    <form onSubmit={this.submit} ref={ref => (this.formElement = ref)}>
-                        <fieldset>
-                            <div className="row">
-                                <div className="col-sm-12">
-                                    <label htmlFor="question">Question</label>
-                                    <input name="question" onChange={this.handleChange} className="form-control" type="text" ref={question => this.inputQuestion = question} placeholder="Question" />
-
-                                    <label htmlFor="correctAnswer">Correct Answer</label>
-                                    <input name="correctAnswer" onChange={this.handleChange} className="form-control" type="text" ref={correctAnswer => this.inputCorrectAnswer = correctAnswer} placeholder="Correct Answer" />
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-12">
+                        <form onSubmit={this.submit} ref={ref => (this.formElement = ref)}>
+                            <fieldset>
+                                <div className="row">
+                                    <div className="col-sm-6 offset-sm-3">
+                                        <label htmlFor="category">Question</label>
+                                        <input name="category" onChange={this.handleChange} className="form-control" type="text" ref={question => this.inputQuestion = question} placeholder="Category" />
+                                    </div>
                                 </div>
-                            </div>
-                        </fieldset>
-                        <button onClick={this.submit} type="button">Submit</button>
-                    </form>
+                            </fieldset>
+                            <button onClick={this.submit} className="mr-10" type="button">Submit</button>
+                            <button onClick={this.addQuestion} type="button">Add Question</button>
+                        </form>
+                    </div>
+
+                    <Modal show={this.state.show} onHide={this.handleClose}>
+                        <form>
+                            <label htmlFor="questionType">Question Type</label>
+                            <select name="questionTypeChange" onClick={this.handleChange} className="form-control">
+                                <option value="Multiple">Multiple</option>
+                                <option value="Boolean">True/False</option>
+                                <option value="Single">Single</option>
+                            </select>
+
+                            <label htmlFor="question">Question</label>
+                            <input name="question" onChange={this.handleChange} className="form-control" type="text" placeholder="Question" />
+
+                            <label htmlFor="correctAnswer">Correct Answer</label>
+                            <input name="correctAnswer" onChange={this.handleChange} className="form-control" type="text" placeholder="Correct Answer" />
+                        </form>
+
+                        <button type="button" className="btn btn-success" onClick={this.addQuestion}>Add Question</button>
+                        <button type="button" className="btn btn-danger" onClick={this.cancelQuestion}>Cancel</button>
+                    </Modal>
+
                 </div>
             </div>
         )
