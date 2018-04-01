@@ -44,7 +44,7 @@ export default class PublicQuizzes extends Component {
       })
   }
 
-  onResult = (obj) => {
+  onResult = obj => {
     console.log(obj.finalTranscript)
     const response = "Did you say " + obj.finalTranscript
     this.setState({
@@ -91,10 +91,12 @@ export default class PublicQuizzes extends Component {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={MLKPic} className="preFade" />
+                <img src={MLKPic} className="preFade" alt="" />
                 <div className="overlay">
-                  <a onClick={this.getQuiz} href="#">
-                    <div id="history" className="fadeText">History</div>
+                  <a onClick={this.getQuiz} href="">
+                    <div id="history" className="fadeText">
+                      History
+                    </div>
                   </a>
                   {player}
                   {
@@ -118,10 +120,12 @@ export default class PublicQuizzes extends Component {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={MathPic} className="preFade" />
+                <img src={MathPic} className="preFade" alt="" />
                 <div className="overlay">
                   <a onClick={this.getQuiz} href="#">
-                    <div id="math" className="fadeText">Math</div>
+                    <div id="math" className="fadeText">
+                      Math
+                    </div>
                   </a>
                 </div>
               </div>
@@ -133,10 +137,12 @@ export default class PublicQuizzes extends Component {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={SciencePic} className="preFade" />
+                <img src={SciencePic} className="preFade" alt="" />
                 <div className="overlay">
                   <a onClick={this.getQuiz} href="#">
-                    <div id="chemistry" className="fadeText">Chemistry</div>
+                    <div id="chemistry" className="fadeText">
+                      Chemistry
+                    </div>
                   </a>
                 </div>
               </div>
@@ -148,10 +154,12 @@ export default class PublicQuizzes extends Component {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={LiteraturePic} className="preFade" />
+                <img src={LiteraturePic} className="preFade" alt="" />
                 <div className="overlay">
                   <a onClick={this.getQuiz} href="#">
-                    <div id="literature" className="fadeText">Literature</div>
+                    <div id="literature" className="fadeText">
+                      Literature
+                    </div>
                   </a>
                 </div>
               </div>
@@ -165,10 +173,12 @@ export default class PublicQuizzes extends Component {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={MusicPic} className="preFade" />
+                <img src={MusicPic} className="preFade" alt="" />
                 <div className="overlay">
                   <a onClick={this.getQuiz} href="#">
-                    <div id="music" className="fadeText">Music</div>
+                    <div id="music" className="fadeText">
+                      Music
+                    </div>
                   </a>
                 </div>
               </div>
@@ -180,10 +190,12 @@ export default class PublicQuizzes extends Component {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={ArtPic} className="preFade" />
+                <img src={ArtPic} className="preFade" alt="" />
                 <div className="overlay">
                   <a onClick={this.getQuiz} href="#">
-                    <div id="art" className="fadeText">Art</div>
+                    <div id="art" className="fadeText">
+                      Art
+                    </div>
                   </a>
                 </div>
               </div>
@@ -195,10 +207,12 @@ export default class PublicQuizzes extends Component {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={CulinaryPic} className="preFade" />
+                <img src={CulinaryPic} className="preFade" alt="" />
                 <div className="overlay">
                   <a onClick={this.getQuiz} href="#">
-                    <div id="culinaryArts" className="fadeText">Culinary Arts</div>
+                    <div id="culinaryArts" className="fadeText">
+                      Culinary Arts
+                    </div>
                   </a>
                 </div>
               </div>
@@ -210,10 +224,12 @@ export default class PublicQuizzes extends Component {
           <div className="col m3">
             <div className="card">
               <div className="card-image fadeContainer">
-                <img src={LogicPic} className="preFade" />
+                <img src={LogicPic} className="preFade" alt="" />
                 <div className="overlay">
                   <a onClick={this.getQuiz} href="#">
-                    <div id="philosophy" className="fadeText">Philosophy</div>
+                    <div id="philosophy" className="fadeText">
+                      Philosophy
+                    </div>
                   </a>
                 </div>
               </div>

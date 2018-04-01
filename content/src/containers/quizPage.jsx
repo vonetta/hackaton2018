@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { readQuizById } from '../services/quiz.service'
-import { VoicePlayer, VoiceRecognition } from 'react-voice-components'
+import React, { Component } from "react"
+import { readQuizById } from "../services/quiz.service"
+import { VoicePlayer, VoiceRecognition } from "react-voice-components"
 
 export default class QuizPage extends Component {
     state = {
@@ -28,9 +28,9 @@ export default class QuizPage extends Component {
         const value = target.value
     }
 
-    onResult = (obj) => {
-        console.log(obj.finalTranscript)
-    }
+  onResult = obj => {
+    console.log(obj.finalTranscript)
+  }
 
     render() {
         return (
