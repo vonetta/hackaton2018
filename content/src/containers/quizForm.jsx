@@ -1,7 +1,6 @@
 import React from "react"
 import { Modal } from "react-bootstrap"
 import { create } from "../services/quiz.service.js"
-import fire from "../fire"
 // TODO: service
 
 export default class QuizForm extends React.PureComponent {
@@ -13,6 +12,7 @@ export default class QuizForm extends React.PureComponent {
         show: false,
         submitted: false,
         domQuestions: [],
+        domPossibleAnswers: [],
         formQuestionData: {
             questionType: "Multiple",
             question: "",
@@ -83,6 +83,23 @@ export default class QuizForm extends React.PureComponent {
         })
     }
 
+    addAnswer = () => {
+        this.setState(prevState => {
+            let newDomPossibleAnswers = [...prevState.domPossibleAnswers]
+
+            newDomPossibleAnswers.unshift(
+                <div className="form-group">
+                    <input name="question" onChange={this.handleChange} className="form-control possible-answer" type="text" placeholder="Answer" />
+                    <label><input name="isCorrect" type="checkbox" /> Is correct</label>
+                </div>
+            )
+
+            return {
+                domPossibleAnswers: newDomPossibleAnswers
+            }
+        })
+    }
+
     render() {
 
         return (
@@ -115,12 +132,18 @@ export default class QuizForm extends React.PureComponent {
                             <label htmlFor="question">Question</label>
                             <input name="question" onChange={this.handleChange} className="form-control" type="text" placeholder="Question" />
 
+                            <div className="form-group">
+                                <label htmlFor="possibleAnswers" className="control-label">Possible Answers</label>
+                                <button type="button" className="btn btn-primary pull-right" onClick={this.addAnswer}> <i class="fa fa-plus"></i> Add an answer</button>
+                                {this.state.domPossibleAnswers}
+                            </div>
+
                             <label htmlFor="correctAnswer">Correct Answer</label>
                             <input name="correctAnswer" onChange={this.handleChange} className="form-control" type="text" placeholder="Correct Answer" />
                         </form>
 
                         <button type="button" className="btn btn-success" onClick={this.addQuestion}>Add Question</button>
-                        <button type="button" className="btn btn-danger" onClick={this.cancelQuestion}>Cancel</button>
+                        <button type="button" className="btn btn-danger" onClick={this.handleClose}>Cancel</button>
                     </Modal>
                 </div>
             </div>

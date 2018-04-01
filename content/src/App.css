@@ -78,6 +78,12 @@
   border-top: 4px solid #555555;
   margin: 1em 0;
   padding: 0;
+}
 
+div.modal-content {
+  padding: 5%;
+}
 
+possible-answer {
+  width: 50% !important;
 }
