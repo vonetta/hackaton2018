@@ -1,7 +1,7 @@
-import React from 'react'
-import { Modal } from 'react-bootstrap'
-import { create } from '../services/quiz.service.js'
-import fire from '../fire'
+import React from "react"
+import { Modal } from "react-bootstrap"
+import { create } from "../services/quiz.service.js"
+import fire from "../fire"
 // TODO: service
 
 export default class QuizForm extends React.PureComponent {
@@ -28,7 +28,7 @@ export default class QuizForm extends React.PureComponent {
         this.setState({ show: true })
     }
 
-    submit = (event) => {
+    submit = event => {
         event.preventDefault()
         const payload = this.state.formData
         this.setState({ submitted: true })
@@ -37,23 +37,22 @@ export default class QuizForm extends React.PureComponent {
         console.log(this.state.formData)
         // https://firebase.google.com/docs/database/admin/save-data
         create(this.state.formData)
-
     }
 
-    handleChange = (event) => {
+    handleChange = event => {
         let input = event.target.value
         let propertyName = event.target.name
 
         this.setState(prevState => {
-            const newFormQuestionData = { ...prevState.formQuestionData }
+            const newFormQuestionData = { ...prevState.formData }
             newFormQuestionData[propertyName] = input
             return {
-                formQuestionData: newFormQuestionData
+                formData: newFormQuestionData
             }
         })
     }
 
-    addQuestion = (event) => {
+    addQuestion = event => {
         let formQuestionData = this.state.formQuestionData
         this.setState(prevState => {
             const newFormData = { ...prevState.formData }
@@ -100,7 +99,7 @@ export default class QuizForm extends React.PureComponent {
                                 </div>
                             </fieldset>
                             <button onClick={this.submit} className="mr-10" type="button">Submit</button>
-                            <button onClick={this.addQuestion} type="button">Add Question</button>
+                            <button onClick={this.handleShow} type="button">Add Question</button>
                         </form>
                     </div>
 
@@ -123,7 +122,6 @@ export default class QuizForm extends React.PureComponent {
                         <button type="button" className="btn btn-success" onClick={this.addQuestion}>Add Question</button>
                         <button type="button" className="btn btn-danger" onClick={this.cancelQuestion}>Cancel</button>
                     </Modal>
-
                 </div>
             </div>
         )

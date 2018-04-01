@@ -74,7 +74,7 @@ class App extends Component {
 
         
 
-        <Switch className="container">
+        <Switch>
           <Route exact path='/' component={Homepage}></Route>
           <Route path="/quiz" component={QuizForm} />
         </Switch>
