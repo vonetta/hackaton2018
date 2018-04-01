@@ -1,26 +1,11 @@
 import React, { Component } from 'react'
+import { readQuizzById } from '../services/quiz.service'
 import { VoicePlayer, VoiceRecognition } from 'react-voice-components'
 
 export default class QuizPage extends Component {
     state = {
         continue: true,
         stop: false,
-    }
-
-    start = (e) => {
-        console.log(e)
-    }
-
-    end = (e) => {
-        console.log(e)
-    }
-
-    recog = (e) => {
-        console.log("Hello " + e)
-    }
-
-    ender = (e) => {
-        console.log("Bye " + e)
     }
 
     onResult = (obj) => {
@@ -35,7 +20,7 @@ export default class QuizPage extends Component {
                     lang="en-GB"
                     onStart={this.start}
                     onEnd={this.end}
-                    text="Hello Alex, Do you need help?">
+                    text={this.state.question}>
                 </VoicePlayer>
                 <VoiceRecognition
                     onResult={this.onResult}

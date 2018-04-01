@@ -71,7 +71,7 @@ export default class PublicQuizzes extends PureComponent {
                 </div>
               </div>
               <div className="card-content camera-card">
-                <p className="flow-text">7 Questions</p>
+                <p className="flow-text">5 Questions</p>
               </div>
             </div>
           </div>
@@ -112,7 +112,7 @@ export default class PublicQuizzes extends PureComponent {
                 </div>
               </div>
               <div className="card-content camera-card">
-                <p className="flow-text">9 Questions</p>
+                <p className="flow-text">4 Questions</p>
               </div>
             </div>
           </div>
@@ -121,11 +121,11 @@ export default class PublicQuizzes extends PureComponent {
               <div className="card-image fadeContainer">
                 <img src={LogicPic} className="preFade" />
                 <div className="overlay">
-                  <div className="fadeText">Logic</div>
+                  <div className="fadeText">Philosophy</div>
                 </div>
               </div>
               <div className="card-content camera-card">
-                <p className="flow-text">8 Questions</p>
+                <p className="flow-text">4 Questions</p>
               </div>
             </div>
           </div>

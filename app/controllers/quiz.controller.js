@@ -8,7 +8,8 @@ module.exports = apiPrefix => {
 
   return {
     create: _create,
-    read: read
+    read: read,
+    readById: _readById
   }
 }
 
@@ -19,6 +20,16 @@ function read(req, res) {
       res.status(200).json(id)
     })
     .catch(err => res.status(500).send(err))
+}
+
+function _readById(req, res){
+  quizService.readById(req.params.id)
+  .then(quiz => {
+    res.status(200).json(quiz)
+  })
+  .catch(err => {
+    res.status(500).send(err)
+  })
 }
 
 function _create(req, res) {

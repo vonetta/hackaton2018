@@ -6,8 +6,9 @@ const quizApiPrefix = "/api/quizzes"
 module.exports = apiPrefix => {
   const quizController = quizControllerFactory(apiPrefix)
 
-  router.post("/", quizController.create)
   router.get("/", quizController.read)
+  router.get("/:id([a-fA-F0-9]{24})", quizController.readById)
+  router.post("/", quizController.create)
 
   return router
 }
