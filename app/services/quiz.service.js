@@ -7,7 +7,8 @@ module.exports = {
 }
 
 function _create (payload) {
-    return conn.db().collection('public-quizzes').insert(payload)
+    console.log(payload)
+    return conn.db().collection('public-quizzes').insertOne(payload)
         .then(result => result.insertedIds[0].toString())
         .catch(onError)
 }

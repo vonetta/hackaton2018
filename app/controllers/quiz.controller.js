@@ -1,11 +1,13 @@
 "use strict"
 
 const quizService = require('../services/quiz.service')
+const responses = require('../models/responses')
 let _apiPrefix
 
 module.exports = apiPrefix => {
     _apiPrefix = apiPrefix
 
+    console.log(_apiPrefix)
     return {
         create: _create
     }

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
 import { create } from '../services/quiz.service.js'
+import fire from '../fire'
 // TODO: service
 
 export default class QuizForm extends React.PureComponent {
     state = {
         formData: {
             quizName: null,
-            subject: "Programming",
             questions: []
         },
         show: false,
@@ -28,13 +28,16 @@ export default class QuizForm extends React.PureComponent {
         this.setState({ show: true })
     }
 
-    submit = () => {
-        // const payload = this.state.formData
+    submit = (event) => {
+        event.preventDefault()
+        const payload = this.state.formData
         this.setState({ submitted: true })
 
         // TODO: send payload to database
         console.log(this.state.formData)
+        // https://firebase.google.com/docs/database/admin/save-data
         create(this.state.formData)
+
     }
 
     handleChange = (event) => {
@@ -86,59 +89,21 @@ export default class QuizForm extends React.PureComponent {
         return (
             <div className="row">
                 <div className="col-sm-12">
-                    <form>
+                    <form onSubmit={this.submit} ref={ref => (this.formElement = ref)}>
                         <fieldset>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <label>Quiz Name:
-                                        <input className="form-control" type="text" placeholder="Quiz Name" />
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-sm-12">
-                                    <label>Subject:
-                                        <input className="form-control" type="text" placeholder="Subject" />
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-sm-12">
-                                    <legend>List of Questions</legend>
-                                    <button className="btn btn-info" onClick={this.handleShow} type="button">Add Question</button>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-sm-12">
-                                    {this.state.questions}
+                                    <label htmlFor="question">Question</label>
+                                    <input name="question" onChange={this.handleChange} className="form-control" type="text" ref={question => this.inputQuestion = question} placeholder="Question" />
+
+                                    <label htmlFor="correctAnswer">Correct Answer</label>
+                                    <input name="correctAnswer" onChange={this.handleChange} className="form-control" type="text" ref={correctAnswer => this.inputCorrectAnswer = correctAnswer} placeholder="Correct Answer" />
                                 </div>
                             </div>
                         </fieldset>
-                        <div>
-                            <button onClick={this.submit} type="button">Submit</button>
-                        </div>
+                        <button onClick={this.submit} type="button">Submit</button>
                     </form>
                 </div>
-
-                <Modal show={this.state.show} onHide={this.handleClose}>
-                    <form>
-                        <label htmlFor="questionType">Question Type</label>
-                        <select name="questionTypeChange" onClick={this.handleChange} className="form-control">
-                            <option value="Multiple">Multiple</option>
-                            <option value="Boolean">True/False</option>
-                            <option value="Single">Single</option>
-                        </select>
-
-                        <label htmlFor="question">Question</label>
-                        <input name="question" onChange={this.handleChange} className="form-control" type="text" placeholder="Question" />
-
-                        <label htmlFor="correctAnswer">Correct Answer</label>
-                        <input name="correctAnswer" onChange={this.handleChange} className="form-control" type="text" placeholder="Correct Answer" />
-                    </form>
-
-                    <button type="button" className="btn btn-success" onClick={this.addQuestion}>Add Question</button>
-                    <button type="button" className="btn btn-danger" onClick={this.cancelQuestion}>Cancel</button>
-                </Modal>
             </div>
         )
     }

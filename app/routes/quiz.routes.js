@@ -3,9 +3,8 @@ const quizControllerFactory = require('../controllers/quiz.controller.js')
 
 module.exports = apiPrefix => {
     const quizController = quizControllerFactory(apiPrefix)
-    console.log(quizController)
 
-    router.post('/api/quizzes/', quizController.create)
+    router.post('/', quizController.create)
 
     return router
 }

@@ -6,8 +6,28 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Route, Switch, Link } from 'react-router-dom'
 import QuizForm from './containers/quizForm'
 
+import fire from './fire'
 
 class App extends Component {
+
+  state = {
+    messages: []
+  }
+
+  componentWillMount(){
+    /* Create reference to messages in Firebase Database */
+    let messagesRef = fire.database().ref('messages').orderByKey().limitToLast(100)
+    messagesRef.on('child_added', snapshot => {
+      /* Update React state when message is added at Firebase Databse */
+      let message = { text: snapshot.val(), id: snapshot.key }
+      this.setState({ messages: [message].concat(this.state.messages)})
+    })
+  }
+  addMessage(e){
+    e.preventDefault()
+    fire.database().ref('messages').push(this.inputEl.value)
+    this.inputEl.value = '' // clear the input
+  }
   render() {
     return (
       <div className="App">
@@ -51,6 +71,8 @@ class App extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+
+        
 
         <Switch>
           <Route exact path='/' component={Homepage}></Route>

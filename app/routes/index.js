@@ -1,10 +1,14 @@
 const router = require('express').Router()
-const quizRoutes = require('./quiz.routes')
 const clientRoutes = require('./client.routes')
 const authenticate = require('../filters/authenticate')
 
 const quizApiPrefix = '/api/quizzes'
+const quizRoutes = require('./quiz.routes')(quizApiPrefix)
+
+
+
 module.exports = router
+
 
 // check authentication for all requests
 router.use(authenticate)
