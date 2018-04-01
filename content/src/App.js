@@ -5,6 +5,7 @@ import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Route, Switch, Link } from 'react-router-dom'
 import QuizForm from './containers/quizForm'
+import PublicQuizzes from './containers/public.quizzes'
 
 import fire from './fire'
 
@@ -42,7 +43,7 @@ class App extends Component {
           <Navbar.Collapse>
             <Nav>
 
-              <LinkContainer to='/example1'>
+              <LinkContainer to='/public-quizzes'>
                 <NavItem>
                   Public Quizzes
                   </NavItem>
@@ -77,6 +78,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Homepage}></Route>
           <Route path="/quiz" component={QuizForm} />
+          <Route path="/public-quizzes" component={PublicQuizzes} />
         </Switch>
       </div>
     );

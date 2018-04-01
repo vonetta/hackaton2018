@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
 import { create } from '../services/quiz.service.js'
-import fire from '../fire'
+
 // TODO: service
 
 export default class QuizForm extends React.PureComponent {
