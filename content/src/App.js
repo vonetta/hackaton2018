@@ -42,21 +42,21 @@ class App extends Component {
           <Navbar.Collapse>
             <Nav>
 
-              <LinkContainer to='/quiz'>
+              <LinkContainer to='/example1'>
                 <NavItem>
                   Public Quizzes
                   </NavItem>
               </LinkContainer>
 
-              <LinkContainer to='/example2'>
+              <LinkContainer to='/quiz'>
                 <NavItem>
-                  Private Quizzes
+                  Add Private Quiz
                 </NavItem>
               </LinkContainer>
 
               <LinkContainer to='/example3'>
                 <NavItem>
-                  Another Thing?
+                  Grading
                 </NavItem>
               </LinkContainer>
 
@@ -64,7 +64,7 @@ class App extends Component {
             <Nav pullRight>
               <NavDropdown eventKey={3} title="USERNAME HERE" id="basic-nav-dropdown">
                 <MenuItem>My Private Quizzes</MenuItem>
-                <MenuItem>My Public Quizzes</MenuItem>
+                <MenuItem>My Grades</MenuItem>
                 <MenuItem divider />
                 <MenuItem>Logout</MenuItem>
               </NavDropdown>
