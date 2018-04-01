@@ -6,11 +6,26 @@ export default class QuizPage extends Component {
     state = {
         play: false,
         continue: true,
-        stop: false
+        stop: false,
+        questions: []
     }
 
-    componentDidMount(){
-        readQuizById()
+    componentDidMount() {
+        readQuizById("5ac076c20352f22bd74a2e95")
+            .then(response => {
+                this.setState({
+                    questions: response.questions
+                })
+            })
+            .catch(err => {
+                console.warn(err)
+            })
+    }
+
+    onTextChange = event => {
+        const target = event.target
+        const name = target.name
+        const value = target.value
     }
 
     onResult = (obj) => {
@@ -35,6 +50,26 @@ export default class QuizPage extends Component {
                     onEnd={this.ender}
                 >
                 </VoiceRecognition>
+                <div className="container">
+                    <div className="row">
+                        <form>
+                            {this.state.questions.map(item => {
+                                return (
+                                    <div key={item.index}>
+                                        <div>
+                                            <p>{item.question}</p>
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="control-label">Answer</label>
+                                            <input className="form-control" type="text" />
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            )}
+                        </form>
+                    </div>
+                </div>
             </div>
         )
     }

@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react"
+import React, { Component } from "react"
 // import { Link } from "react-router-dom"
 // import { Button } from "react-bootstrap"
-import { readQuizById } from '../services/quiz.service'
+import { readQuizByCategory } from '../services/quiz.service'
 import { VoicePlayer, VoiceRecognition } from 'react-voice-components'
 import MLKPic from "../images/mlk.jpg"
 import MathPic from "../images/math.jpg"
@@ -14,22 +14,24 @@ import LogicPic from "../images/logic.jpg"
 
 import "../App.css"
 
-export default class PublicQuizzes extends PureComponent {
+export default class PublicQuizzes extends Component {
   state = {
     play: false,
     continue: true,
     stop: false,
     quizStart: false,
     recognize: false,
-    questions: "",
+    questions: [],
     answers: []
   }
 
   getQuiz = (event) => {
+    this.setState({ questions: [] })
+
     const target = event.target
     const name = target.id
 
-    readQuizById(name)
+    readQuizByCategory(name)
       .then(response => {
         console.log(response)
         this.setState({
@@ -48,8 +50,18 @@ export default class PublicQuizzes extends PureComponent {
     this.setState({
       recognize: false,
       continuous: false,
-      stop: true,
-      questions: response
+      stop: true
+    })
+  }
+
+  popArray = () => {
+    this.setState(prevState => {
+      const newState = { ...prevState }
+      const questions = newState.questions.pop()
+      return {
+        questions: newState.questions,
+        quizStart: true
+      }
     })
   }
 
@@ -61,7 +73,7 @@ export default class PublicQuizzes extends PureComponent {
           <VoicePlayer
             play={this.state.quizStart}
             lang="en-GB"
-            onEnd={() => this.setState({ quizStart: false, questions: "", recognize: true })}
+            onEnd={() => this.setState({ quizStart: false, recognize: true, continue: true, stop: false })}
             text={this.state.questions[i].question}>
           </VoicePlayer>)
       }
@@ -91,6 +103,7 @@ export default class PublicQuizzes extends PureComponent {
                         onResult={this.onResult}
                         continuous={this.state.continue}
                         stop={this.state.stop}
+                        onEnd={this.popArray}
                       >
                       </VoiceRecognition>
                     )

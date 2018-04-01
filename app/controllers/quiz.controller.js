@@ -9,6 +9,7 @@ module.exports = apiPrefix => {
   return {
     create: _create,
     read: read,
+    readByCategory: _readByCategory,
     readById: _readById
   }
 }
@@ -22,14 +23,24 @@ function read(req, res) {
     .catch(err => res.status(500).send(err))
 }
 
-function _readById(req, res){
-  quizService.readById(req.params.category)
-  .then(quiz => {
-    res.status(200).json(quiz)
-  })
-  .catch(err => {
-    res.status(500).send(err)
-  })
+function _readByCategory(req, res) {
+  quizService.readByCategory(req.params.category)
+    .then(quiz => {
+      res.status(200).json(quiz)
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+}
+
+function _readById(req, res) {
+  quizService.readById(req.params.id)
+    .then(quiz => {
+      res.status(200).json(quiz)
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
 }
 
 function _create(req, res) {
