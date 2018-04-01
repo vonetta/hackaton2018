@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
-import { readQuizzById } from '../services/quiz.service'
+import { readQuizById } from '../services/quiz.service'
 import { VoicePlayer, VoiceRecognition } from 'react-voice-components'
 
 export default class QuizPage extends Component {
     state = {
+        play: false,
         continue: true,
-        stop: false,
+        stop: false
+    }
+
+    componentDidMount(){
+        readQuizById()
     }
 
     onResult = (obj) => {
@@ -16,7 +21,7 @@ export default class QuizPage extends Component {
         return (
             <div>
                 <VoicePlayer
-                    play
+                    play={this.state.play}
                     lang="en-GB"
                     onStart={this.start}
                     onEnd={this.end}

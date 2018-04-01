@@ -27,7 +27,7 @@ function read() {
 }
 
 function _readById(id) {
-  return conn.db().collection("public-quizzes").findOne({ _id: new ObjectId(id) })
+  return conn.db().collection("public-quizzes").findOne({ category: id })
     .then(quiz => {
       quiz._id = quiz._id.toString()
       return quiz

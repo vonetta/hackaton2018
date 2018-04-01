@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react"
-import { Link } from "react-router-dom"
-import { Button } from "react-bootstrap"
+// import { Link } from "react-router-dom"
+// import { Button } from "react-bootstrap"
+import { readQuizById } from '../services/quiz.service'
+import { VoicePlayer, VoiceRecognition } from 'react-voice-components'
 import MLKPic from "../images/mlk.jpg"
 import MathPic from "../images/math.jpg"
 import SciencePic from "../images/science.jpg"
@@ -13,7 +15,58 @@ import LogicPic from "../images/logic.jpg"
 import "../App.css"
 
 export default class PublicQuizzes extends PureComponent {
+  state = {
+    play: false,
+    continue: true,
+    stop: false,
+    quizStart: false,
+    recognize: false,
+    questions: "",
+    answers: []
+  }
+
+  getQuiz = (event) => {
+    const target = event.target
+    const name = target.id
+
+    readQuizById(name)
+      .then(response => {
+        console.log(response)
+        this.setState({
+          questions: response.questions,
+          quizStart: true
+        })
+      })
+      .catch(err => {
+        console.warn(err)
+      })
+  }
+
+  onResult = (obj) => {
+    console.log(obj.finalTranscript)
+    const response = "Did you say " + obj.finalTranscript
+    this.setState({
+      recognize: false,
+      continuous: false,
+      stop: true,
+      questions: response
+    })
+  }
+
   render() {
+    let player
+    if (this.state.questions) {
+      for (let i = 0; i < this.state.questions.length; i++) {
+        player = (
+          <VoicePlayer
+            play={this.state.quizStart}
+            lang="en-GB"
+            onEnd={() => this.setState({ quizStart: false, questions: "", recognize: true })}
+            text={this.state.questions[i].question}>
+          </VoicePlayer>)
+      }
+    }
+
     return (
       <div className="container">
         <h1
@@ -28,7 +81,20 @@ export default class PublicQuizzes extends PureComponent {
               <div className="card-image fadeContainer">
                 <img src={MLKPic} className="preFade" />
                 <div className="overlay">
-                  <div className="fadeText">History</div>
+                  <a onClick={this.getQuiz} href="#">
+                    <div id="history" className="fadeText">History</div>
+                  </a>
+                  {player}
+                  {
+                    this.state.recognize && (
+                      <VoiceRecognition
+                        onResult={this.onResult}
+                        continuous={this.state.continue}
+                        stop={this.state.stop}
+                      >
+                      </VoiceRecognition>
+                    )
+                  }
                 </div>
               </div>
               <div className="card-content camera-card">
@@ -41,7 +107,9 @@ export default class PublicQuizzes extends PureComponent {
               <div className="card-image fadeContainer">
                 <img src={MathPic} className="preFade" />
                 <div className="overlay">
-                  <div className="fadeText">Math</div>
+                  <a onClick={this.getQuiz} href="#">
+                    <div id="math" className="fadeText">Math</div>
+                  </a>
                 </div>
               </div>
               <div className="card-content camera-card">
@@ -54,7 +122,9 @@ export default class PublicQuizzes extends PureComponent {
               <div className="card-image fadeContainer">
                 <img src={SciencePic} className="preFade" />
                 <div className="overlay">
-                  <div className="fadeText">Chemistry</div>
+                  <a onClick={this.getQuiz} href="#">
+                    <div id="chemistry" className="fadeText">Chemistry</div>
+                  </a>
                 </div>
               </div>
               <div className="card-content camera-card">
@@ -67,7 +137,9 @@ export default class PublicQuizzes extends PureComponent {
               <div className="card-image fadeContainer">
                 <img src={LiteraturePic} className="preFade" />
                 <div className="overlay">
-                  <div className="fadeText">Literature</div>
+                  <a onClick={this.getQuiz} href="#">
+                    <div id="literature" className="fadeText">Literature</div>
+                  </a>
                 </div>
               </div>
               <div className="card-content camera-card">
@@ -82,7 +154,9 @@ export default class PublicQuizzes extends PureComponent {
               <div className="card-image fadeContainer">
                 <img src={MusicPic} className="preFade" />
                 <div className="overlay">
-                  <div className="fadeText">Music</div>
+                  <a onClick={this.getQuiz} href="#">
+                    <div id="music" className="fadeText">Music</div>
+                  </a>
                 </div>
               </div>
               <div className="card-content camera-card">
@@ -95,7 +169,9 @@ export default class PublicQuizzes extends PureComponent {
               <div className="card-image fadeContainer">
                 <img src={ArtPic} className="preFade" />
                 <div className="overlay">
-                  <div className="fadeText">Art</div>
+                  <a onClick={this.getQuiz} href="#">
+                    <div id="art" className="fadeText">Art</div>
+                  </a>
                 </div>
               </div>
               <div className="card-content camera-card">
@@ -108,7 +184,9 @@ export default class PublicQuizzes extends PureComponent {
               <div className="card-image fadeContainer">
                 <img src={CulinaryPic} className="preFade" />
                 <div className="overlay">
-                  <div className="fadeText">Culinary Arts</div>
+                  <a onClick={this.getQuiz} href="#">
+                    <div id="culinaryArts" className="fadeText">Culinary Arts</div>
+                  </a>
                 </div>
               </div>
               <div className="card-content camera-card">
@@ -121,7 +199,9 @@ export default class PublicQuizzes extends PureComponent {
               <div className="card-image fadeContainer">
                 <img src={LogicPic} className="preFade" />
                 <div className="overlay">
-                  <div className="fadeText">Philosophy</div>
+                  <a onClick={this.getQuiz} href="#">
+                    <div id="philosophy" className="fadeText">Philosophy</div>
+                  </a>
                 </div>
               </div>
               <div className="card-content camera-card">

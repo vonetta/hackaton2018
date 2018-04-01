@@ -23,7 +23,7 @@ function read(req, res) {
 }
 
 function _readById(req, res){
-  quizService.readById(req.params.id)
+  quizService.readById(req.params.category)
   .then(quiz => {
     res.status(200).json(quiz)
   })
