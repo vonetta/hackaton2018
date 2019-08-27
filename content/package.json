@@ -5,7 +5,7 @@
   "dependencies": {
     "@kadira/storybook": "^2.35.3",
     "axios": "^0.18.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.3.1",
     "dotenv": "^5.0.1",
     "firebase": "^4.12.1",
     "react": "^15.0.0",
